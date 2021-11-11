@@ -7,11 +7,11 @@ Let's simulate simplified work cycle of the model on the virtual 9x9 Go board (i
 
 Endgame position            | Position recognition
 :-------------------------:|:-------------------------:
-<img src="demo/endgame.jpg" width="300" height="300">  |  <img src="demo/sgf-format.jpg" height="300" width="40">
+<img src="demo/readme_photos/endgame.jpg" width="300" height="300">  |  <img src="demo/readme_photos/sgf-format.jpg" height="300" width="40">
 
 Scored endgame           |  Predict winner
 :-------------------------:|:-------------------------:
-<img src="demo/scored-endgame.jpg" width="300" height="300">  |  <img src="demo/predict-winner.jpg" width="40">
+<img src="demo/readme_photos/scored-endgame.jpg" width="300" height="300">  |  <img src="demo/readme_photos/predict-winner.jpg" width="40">
 
 <em>Photos made during the game on https://online-go.com</em>
 
