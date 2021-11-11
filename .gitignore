@@ -1,5 +1,6 @@
 # Project folders
 data/
+!src/data
 papers/
 
 # .gitignore file from https://github.com/github/gitignore/blob/master/Python.gitignore
