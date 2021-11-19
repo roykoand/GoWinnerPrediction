@@ -7,11 +7,12 @@ Dataset folder will have the following tree structure:
 ```
     path-to-save
     ├── B
-    ├── Draw
+    ├── Draw [Optional]
     └── W
 ```
 
 This file also covered with tests (```tests/make_dataset.py```)
 
+## Acknowledgment
 In this module, I used perfect CLI utility ```sgf-render``` (https://github.com/julianandrews/sgf-render) written in Rust. 
 

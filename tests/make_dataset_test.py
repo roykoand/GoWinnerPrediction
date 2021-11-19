@@ -34,26 +34,18 @@ def sgf_files():
         """
         (;GM[1]FF[4]  SZ[19]  GN[]  DT[2017-02-03]  PB[äººå?¯è¡£ç¾è£å·³ç?«]  PW[æ?ã?å¾
 ]  BR[16çº§]  WR[18çº§]  KM[650]HA[0]RU[Japanese]AP[GNU Go:3.8]RE[draw]TM[1252]TC[3]TT[30]  ;B[pp];W[pd];B[dd];W[dp];B[mq];W[nm];B[gc
+        """,
         """
+        RE[B+3.5] 
+        RE[W+2]
+        RE[W+R]
+        """, 
+        """BLABLABLAR[B+R]E]RE[drasw]"""
     ]
-    winners = ["B", "W", "W", "W", "Draw"]
+    winners = ["B", "W", "W", "W", "Draw", -1, -1]
     return zip(sgf_texts, winners)
 
 def test_find_one_winner(sgf_files):
     """Test case when we have correct sgf-format (one winner in file)"""
     for sgf_text, winner in sgf_files:
         assert SGF2DS._find_winner(sgf_text) == winner
-
-def test_find_without_winners():
-    """Test case when we have not winner in file"""
-    with pytest.raises(ValueError):
-        SGF2DS._find_winner("BLABLABLAR[B+R]E]RE[drasw]")
-
-def test_find_more_then_one():
-    """Test case when we have more than one winner in file"""
-    with pytest.raises(ValueError):
-        SGF2DS._find_winner("""
-        RE[B+3.5] 
-        RE[W+2]
-        RE[W+R]
-        """)
