@@ -5,7 +5,7 @@ This file covered with tests in tests/make_dataset_test.py
 from typing import Union, List
 import os
 import re
-
+import random
 
 class SGF2DS:
     """
@@ -22,16 +22,22 @@ class SGF2DS:
         path_to_convertor: str,
         path_to_dirs: Union[List[str], str],
         path_to_save: str,
+        path_to_board_styles_dir: Union[str, None] = None
     ) -> None:
         """
         Inits SGF2DS with the path to convertor sgf to png utility,
         path to the directory which contains sgf-files, 
-        and path where images must be saved
+        and path where images must be saved and also you 
+        can specify path to directory with styles in .toml format
         """
         self._path_to_convertor = path_to_convertor
         self._path_to_dirs = path_to_dirs if isinstance(path_to_dirs, list) else [path_to_dirs]
         self._path_to_save = path_to_save
-            
+        self.path_to_board_styles_dir = path_to_board_styles_dir
+
+        if self.path_to_board_styles_dir is not None:
+            self.paths_to_board_styles = os.listdir(self.path_to_board_styles_dir)
+
 
     def save(self, pass_draw: bool=True) -> None:
         """
@@ -39,6 +45,7 @@ class SGF2DS:
         create it, and in this directory generate 3 folders
         path_to_save/{W, B, Draw} for images. Then parse dir/ with
         files in sgf-format and with utility convert sgf to png file 
+        with some custom styles (if prescribed)
 
         Args:
             pass draw [Optional]
@@ -46,7 +53,12 @@ class SGF2DS:
         """
         if not os.path.isdir(self._path_to_save):
             os.mkdir(self._path_to_save)
-            for dir_name in ["W", "B", "Draw"]:
+            dataset_dirs = ["W", "B"]
+
+            if not pass_draw:
+                dataset_dirs.append("Draw")
+
+            for dir_name in dataset_dirs:
                 os.mkdir(os.path.join(self._path_to_save, dir_name))
 
         for dir_path in self._path_to_dirs:
@@ -69,10 +81,17 @@ class SGF2DS:
                             continue
                         
                     file_name = file[:-4]
+                    
                     # ignore error messages from sgf2png utility
-                    os.system(
-                        f"{self._path_to_convertor} {dir_path}/{file} -n last -o {self._path_to_save}/{winner_color}/{file_name}.png 2>/dev/null"
-                    )
+                    terminal_script = f"{self._path_to_convertor} {dir_path}/{file} -n last -o {self._path_to_save}/{winner_color}/{file_name}.png"
+                    
+                    # if we want not only default board style
+                    if self.path_to_board_styles_dir is not None:       
+                        style_path = os.path.join(self.path_to_board_styles_dir, 
+                                        random.choice(self.paths_to_board_styles))
+                        terminal_script += f" --custom-style {style_path}"
+
+                    os.system(terminal_script + " 2> /dev/null")
 
     @staticmethod
     def _find_winner(sgf_text: str) -> str:
@@ -94,4 +113,3 @@ class SGF2DS:
             return -1 
 
         return winner[0].title()
-    
