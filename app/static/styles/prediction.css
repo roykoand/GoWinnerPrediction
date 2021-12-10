@@ -1,0 +1,43 @@
+body {
+    background: url("/static/images/background.jpg");
+	background-repeat: no-repeat;
+    background-size: cover;	
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.blured-box {
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0, 0.4); 
+  color: white;
+  font-weight: bold;
+  border: 1px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 40px;
+  text-align: center;
+}
+
+@font-face {
+  font-family: japanesefont; 
+  src: url(/static/styles/fonts/NightinTokyo-Bold.ttf);
+}
+
+.welcome-text {
+  font-size: 50px;
+  padding-bottom: 60px;
+  font-family: japanesefont;
+}
+
+.predicition-block img{
+    height: 425px;
+    width: 425px;
+    margin-top: -70px;
+    margin-left: 0px;
+}

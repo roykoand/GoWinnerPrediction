@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Go Winner Prediction</title>
+        <!-- right holders of this icon, please don't judge 
+        me. I took it from here https://freesvg.org/game-of-go-->
+    <link rel="icon" href="{{ url_for('static', filename='images/icon.jpeg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/home.css') }}">
+</head>
+<body>
+
+    <div class="blured-box">
+        <p class="welcome-text">Konnichiwa, little <span class="samurai-word">samurai</span></p>
+        <div class="uploader">
+            <form method = "POST" action="/" enctype = "multipart/form-data">
+                <input type = "file" name="file">
+                <p id="file-p">Give us an a png-image with your Go game, and we will tell you the winner</p>
+                <button type="submit">Upload</button>
+            </form>   
+        </div>
+    </div>  
+    <script>    
+    var input = document.querySelector('input');
+    function updateText(input){
+        document.getElementById("file-p").innerHTML = "File selected, please push upload button";
+    }
+    input.addEventListener('change', updateText);
+    </script>
+</body>
+</html>

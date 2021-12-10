@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Go Winner Prediction</title>
+        <!-- right holders of this icon, please don't judge 
+        me. I took it from here https://freesvg.org/game-of-go-->
+    <link rel="icon" href="{{ url_for('static', filename='images/icon.jpeg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/prediction.css') }}">
+</head>
+<body>
+
+    <div class="blured-box">
+        {% if winner_color.lower()[0] == "b" %}
+            <p class="welcome-text"><span class="winner-color" style="color: black">Black</span> <span class="is-winner" style="color: white">side is the winner</p>
+        {% endif %}
+        {% if winner_color.lower()[0] == "w" %}
+        <p class="welcome-text"><span class="winner-color" style="color: white">White</span> <span class="is-winner" style="color: black">side is the winner</p>
+        {% endif %}
+        <div class="predicition-block">
+                <img src="{{ url_for('static', filename = path_to_image) }}" alt="" class="image-for-prediction">
+        </div>
+    </div>
+</body>
+</html>
