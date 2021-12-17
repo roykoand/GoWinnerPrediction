@@ -9,12 +9,11 @@ from typing import Optional, Tuple
 import torch.nn as nn
 import torch
 
-
 class Classifier:
     def __init__(
         self,
         weights_url: Optional[str] = None,
-        img_size: Optional[Tuple[int]] = (128, 128),
+        img_size: Optional[Tuple[int]] = (256, 256),
     ) -> None:
         """
         Args:
