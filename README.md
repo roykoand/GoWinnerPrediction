@@ -1,6 +1,6 @@
 # Go Game Winner Prediction
 
-The meaning of this project follows from the name. The user sends us an image of the endgame position of the Go game, and we tell him who is the loser and winner.
+The meaning of this project follows from the name. The user sends us an endgame position image of the Go game, and we tell him who is the loser and winner.
 ## Presentation
 You can get more information about the project and "production pipeline" from the ```demo/presentation/presentation.pdf```. 
 
@@ -8,7 +8,7 @@ You can get more information about the project and "production pipeline" from th
 You can check "production model" with the Flask app (```app/app.py```) or with the API (```api/api.py```). Weights of the production model are stored in the github release.
 ## Datasets
 
-Endgame positions on the Go game (created with sgf2png utility [[1]](#1)):
+Endgame positions of the Go game (created with sgf2png utility [[1]](#1)):
 
 https://www.kaggle.com/roykoandriy/endgame-positions-on-go-game
 
